@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] = "POST") {
 
         header ("Location:todo.php");
     } else {
-        echo "<h3>Invalid Login Credentials</h3>";
+        echo $error = " ";
     }
 }
 ?>
@@ -42,9 +42,50 @@ if ($_SERVER["REQUEST_METHOD"] = "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form method="POST">
+
+     <div class="container">
+    <form class="form active" id="loginForm" method="POST">
+      <h2>Login</h2>
+      <input type="username" placeholder="username" name="username">
+      <input type="password" placeholder="Password" name="password">
+      <button>Login</button>
+    </form>
+
+    <form class="form" id="signupForm">
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Name" name="username">
+      <input type="email" placeholder="Email" username="email">
+      <input type="password" placeholder="Password" name="password">
+      <button>Register</button>
+    </form>
+
+    <div class="toggle" onclick="toggleForms()">Switch to Sign Up</div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const toggleBtn = document.querySelector('.toggle');
+    let isLogin = true;
+
+    function toggleForms() {
+      if (isLogin) {
+        loginForm.classList.remove('active');
+        signupForm.classList.add('active');
+        toggleBtn.textContent = "Switch to Login";
+      } else {
+        signupForm.classList.remove('active');
+        loginForm.classList.add('active');
+        toggleBtn.textContent = "Switch to Sign Up";
+      }
+      isLogin = !isLogin;
+    }
+  </script>
+
+    <!-- <form method="POST">
         <label for="username">Name:</label><br>
         <input type="text" name="username" required><br><br>
 
@@ -52,6 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] = "POST") {
         <input type="password" name="password" required><br><br>
 
         <button type="submit">Login</button>
-    </form>
+    </form> -->
 </body>
 </html>

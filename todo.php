@@ -1,5 +1,16 @@
 <?php
 
+// save message
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = $_POST["title"];
+    $msg = $_POST["message"];
+    $file = fopen("message.txt", "a");
+    fwrite($file, $msg . "\n");
+    fclose($file);
+    
+    header("Location: read.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +30,7 @@
             <input type="checkbox" name="subscribe" value="yes"><br>
             <label for="title" name="title">Title</label><br>
             <input type="text" name="title"> <br><br>
-            <label for="newsletter" name="">Description</label><br>
+            <label for="message" name="message">Description</label><br>
             <textarea name="message"></textarea><br><br>
 
             <button type="submit">Save</button>
