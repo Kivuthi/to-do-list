@@ -19,7 +19,7 @@ if (isset($_SESSION["username"])) {
 $validName = "dennis";
 $validPass = "1234";
 
-if ($_SERVER["REQUEST_METHOD"] = "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["username"];
     $password = $_POST["password"];
 
